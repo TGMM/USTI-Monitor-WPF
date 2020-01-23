@@ -5,6 +5,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:local="clr-namespace:SerialMonitorWPF.Views"
                       xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:user="clr-namespace:TemperatureConsoleLibrary;assembly=TemperatureConsoleLibrary"
                       mc:Ignorable="d"
                       Title="ShellView" Height="450" Width="800">
     <Grid>

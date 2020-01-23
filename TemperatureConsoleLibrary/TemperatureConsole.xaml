@@ -7,7 +7,9 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="230" d:DesignWidth="310">
-
+    <UserControl.Resources>
+        <local:TemperatureConverter x:Key="TemperatureConverter" />
+    </UserControl.Resources>
     <local:AspectRatioLayoutDecorator AspectRatio="1.34782608696">
         <Grid>
             <Grid.Background>
@@ -32,27 +34,27 @@
 
             <!-- Temperature 1-->
             <Viewbox Grid.Row="1" Grid.Column="1">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperature1, Mode=OneWay}"/>
+                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[0], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
             <!-- Temperature 2-->
             <Viewbox Grid.Row="1" Grid.Column="3">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperature2, Mode=OneWay}"/>
+                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[1], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
             <!-- Temperature 3-->
             <Viewbox Grid.Row="1" Grid.Column="5">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperature3, Mode=OneWay}"/>
+                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[2], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
             <!-- Temperature 4-->
             <Viewbox Grid.Row="3" Grid.Column="1">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperature4, Mode=OneWay}"/>
+                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[3], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
             <!-- Temperature 5-->
             <Viewbox Grid.Row="3" Grid.Column="3">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperature5, Mode=OneWay}"/>
+                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[4], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
             <!-- Temperature 6-->
             <Viewbox Grid.Row="3" Grid.Column="5">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperature6, Mode=OneWay}"/>
+                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[5], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
 
         </Grid>

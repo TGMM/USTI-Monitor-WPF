@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,5 +36,23 @@ namespace TemperatureConsoleLibrary
 			set { SetValue(TemperaturesProperty, value); }
 		}
 
+	}
+	public class TemperatureConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		{
+			if ((string)value != string.Empty)
+				return value + "° ";
+			else
+				return "-- ";
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		{
+			if ((string) value == "-- ")
+				return string.Empty;
+			else
+				return value.ToString().Replace("° ", "");
+		}
 	}
 }

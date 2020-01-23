@@ -118,5 +118,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemperatureConsoleLibrary\TemperatureConsoleLibrary.csproj">
+      <Project>{da1eaa6a-3943-4d5c-baec-3119c88e89a7}</Project>
+      <Name>TemperatureConsoleLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

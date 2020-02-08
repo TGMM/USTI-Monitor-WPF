@@ -117,11 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AxInterop_SPortLib" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AxInterop.SPortLib.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Completed" xml:space="preserve">
+    <value>Completado</value>
   </data>
-  <data name="Interop_SPortLib" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Interop.SPortLib.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="SelectAPort" xml:space="preserve">
+    <value>Seleccione un puerto.</value>
+  </data>
+  <data name="SerialPortOpened" xml:space="preserve">
+    <value>Se abrió el puerto serial.</value>
+  </data>
+  <data name="SerialPortOpenedError" xml:space="preserve">
+    <value>No se pudo abrir el puerto serial, verifique que este exista y se encuentre disponible.</value>
   </data>
 </root>

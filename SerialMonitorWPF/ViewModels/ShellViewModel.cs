@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.IO.Ports;
+using System.Windows.Input;
 using Caliburn.Micro;
 
 namespace SerialMonitorWPF.ViewModels
@@ -12,23 +9,52 @@ namespace SerialMonitorWPF.ViewModels
     public class ShellViewModel : Screen
     {
 
+        public BindableCollection<int?> Temperatures { get; set; }
+        public ObservableCollection<string> AvailablePorts { get; set; }
+
+        private readonly SerialPortParser _serialPortParser = new SerialPortParser();
+
         public ShellViewModel()
         {
-            Temperatures = new ObservableCollection<string>();
-            for (int i = 0; i < 6; i++)
+            //Events
+            _serialPortParser.OnDataUpdate += SerialPortParser_OnDataUpdate;
+            _serialPortParser.OnPortsChange += SerialPortParser_OnPortsChange;
+            //Assignments
+            AvailablePorts = new ObservableCollection<string>();
+            //Initialize TemperatureConsole data
+            Temperatures = new BindableCollection<int?>();
+            for (int i = 0; i < _serialPortParser.TemperatureCount; i++)
             {
-                Temperatures.Add("0");
+                Temperatures.Add(null);
+            }
+            //Functions
+            UpdatePorts();
+        }
+
+        private void UpdatePorts()
+        {
+            AvailablePorts.Clear();
+            foreach (var port in SerialPort.GetPortNames())
+            {
+                AvailablePorts.Add(port);
             }
         }
 
-        private ObservableCollection<string> _temperatures;
-
-        public ObservableCollection<string> Temperatures
+        private void SerialPortParser_OnDataUpdate(object sender, EventArgs e)
         {
-            get
-            { return _temperatures; }
-            set
-            { _temperatures = value; }
+            var sp = (SerialPortParser)sender;
+            OnUIThread(() =>
+            {
+                Temperatures = sp.GetTemperatures();
+                NotifyOfPropertyChange(nameof(Temperatures));
+            });
         }
+
+        private void SerialPortParser_OnPortsChange(object sender, EventArgs e)
+        {
+            UpdatePorts();
+        }
+
+        public ICommand OpenPortCommand => new DelegateCommand(_serialPortParser.OpenPort);
     }
 }

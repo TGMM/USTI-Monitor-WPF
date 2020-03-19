@@ -11,7 +11,7 @@ namespace TemperatureConsoleLibrary
     /// <summary>
     /// Interaction logic for TemperatureConsole.xaml
     /// </summary>
-    public partial class TemperatureConsole : UserControl
+    public partial class TemperatureConsole
     {
         public TemperatureConsole()
         {

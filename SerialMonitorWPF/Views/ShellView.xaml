@@ -4,16 +4,30 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                      xmlns:user="clr-namespace:TemperatureConsoleLibrary;assembly=TemperatureConsoleLibrary"
+                      xmlns:tcLib="clr-namespace:TemperatureConsoleLibrary;assembly=TemperatureConsoleLibrary"
+                      xmlns:bcLib="clr-namespace:BatteryConsoleLibrary;assembly=BatteryConsoleLibrary"
                       mc:Ignorable="d"
                       Title="ShellView" Height="450" Width="800"
                       xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
                       dialog:DialogParticipation.Register="{Binding}">
     <Grid Name="MainWindowGrid">
-        <user:TemperatureConsole Margin="342,72,44,41"></user:TemperatureConsole>
-        <ComboBox Name="SelectedPort" ItemsSource="{Binding AvailablePorts}" Margin="78,100,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="232"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="115*"/>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="150*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="749*"/>
+        </Grid.ColumnDefinitions>
+
+        <ComboBox Name="SelectedPort" ItemsSource="{Binding AvailablePorts}" Height="32" VerticalAlignment="Top" Width="232"
+                  Grid.Row="0" Grid.Column="1" Margin="259,70,258,0"/>
         <Button x:Name="OpenSerialButton" Content="Open" Command="{Binding OpenPortCommand}" CommandParameter="{Binding ElementName=SelectedPort, Path=SelectedItem}"
-                HorizontalAlignment="Left" Margin="153,149,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="23" Margin="136,197,0,0" TextWrapping="Wrap" Text="{Binding Temperatures[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" VerticalAlignment="Top" Width="120"/>
+                VerticalAlignment="Top" Width="75" Grid.Row="0"
+                Grid.Column="1" Height="27" Margin="337,30,337,0"/>
+
+        <tcLib:TemperatureConsole Grid.Column="1" Grid.Row="2"/>
+        <bcLib:BatteryConsole Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </controls:MetroWindow>

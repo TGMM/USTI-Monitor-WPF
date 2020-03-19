@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="BatteryConsoleLibrary.BatteryBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:BatteryConsoleLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="59.75" d:DesignWidth="193">
+
+    <UserControl.Resources>
+        <local:GreaterThanConverter x:Key="GreaterThanConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Indicator 1 -->
+        <local:BatteryIndicator Grid.Column="0" IsLit="{
+            Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Voltage, 
+            Converter={StaticResource GreaterThanConverter}, 
+            ConverterParameter=1.0}"/>
+        <!-- Indicator 2 -->
+        <local:BatteryIndicator Grid.Column="1" IsLit="{
+            Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Voltage, 
+            Converter={StaticResource GreaterThanConverter}, 
+            ConverterParameter=2.0}"/>
+        <!-- Indicator 3 -->
+        <local:BatteryIndicator Grid.Column="2" IsLit="{
+            Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Voltage, 
+            Converter={StaticResource GreaterThanConverter}, 
+            ConverterParameter=3.0}"/>
+        <!-- Indicator 4 -->
+        <local:BatteryIndicator Grid.Column="3" IsLit="{
+            Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Voltage, 
+            Converter={StaticResource GreaterThanConverter}, 
+            ConverterParameter=4.0}"/>
+        <!-- Indicator 5 -->
+        <local:BatteryIndicator Grid.Column="4" IsLit="{
+            Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Voltage, 
+            Converter={StaticResource GreaterThanConverter}, 
+            ConverterParameter=5.0}"/>
+        <!-- Indicator 6 -->
+        <local:BatteryIndicator Grid.Column="5" IsLit="{
+            Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Voltage, 
+            Converter={StaticResource GreaterThanConverter}, 
+            ConverterParameter=6.0}"/>
+        <!-- Indicator 7 -->
+        <local:BatteryIndicator Grid.Column="6" IsLit="{
+            Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Voltage, 
+            Converter={StaticResource GreaterThanConverter}, 
+            ConverterParameter=7.0}"/>
+        <!-- Indicator 8 -->
+        <local:BatteryIndicator Grid.Column="7" IsLit="{
+            Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Voltage, 
+            Converter={StaticResource GreaterThanConverter}, 
+            ConverterParameter=8.0}"/>
+        <!-- Indicator 9 -->
+        <local:BatteryIndicator Grid.Column="8" IsLit="{
+            Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Voltage, 
+            Converter={StaticResource GreaterThanConverter}, 
+            ConverterParameter=9.0}"/>
+        <!-- Indicator 10 -->
+        <local:BatteryIndicator Grid.Column="9" IsLit="{
+            Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Voltage, 
+            Converter={StaticResource GreaterThanConverter}, 
+            ConverterParameter=10.0}"/>
+
+    </Grid>
+</UserControl>

@@ -59,6 +59,9 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="QuickConverter, Version=1.2.5.0, Culture=neutral, PublicKeyToken=9c892aa7bc2af2cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickConverter.1.2.5\lib\net40\QuickConverter.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -142,6 +145,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BatteryConsoleLibrary\BatteryConsoleLibrary.csproj">
+      <Project>{f14824e7-68e8-4c4a-8b51-fc4942e9c396}</Project>
+      <Name>BatteryConsoleLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TemperatureConsoleLibrary\TemperatureConsoleLibrary.csproj">
       <Project>{da1eaa6a-3943-4d5c-baec-3119c88e89a7}</Project>
       <Name>TemperatureConsoleLibrary</Name>

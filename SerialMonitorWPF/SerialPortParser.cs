@@ -10,17 +10,19 @@ namespace SerialMonitorWPF
 {
     internal class SerialPortParser
     {
-        public event EventHandler OnDataUpdate;
+        public event EventHandler<UpdateDataEventArgs> OnDataUpdate;
         public event EventHandler OnPortsChange;
         private readonly AxSPortAx _axSPortAx = new AxSPortAx();
         private readonly MetroMessageBox _mMessageBox = new MetroMessageBox();
 
         private BindableCollection<int?> _parsedTemperatures;
+        private BindableCollection<float?> _parsedVoltages;
 
         private byte[] _inputBuffer;
         private int _bufferCounter;
 
-        public int TemperatureCount = 6;
+        public const int TemperatureCount = 6;
+        public const int VoltageCount = 8;
 
         public SerialPortParser()
         {
@@ -31,6 +33,13 @@ namespace SerialMonitorWPF
             _axSPortAx.OnChangePortsList += _axSPortAx_OnChangePortsList;
             
             _parsedTemperatures = new BindableCollection<int?>();
+            _parsedVoltages = new BindableCollection<float?>();
+        }
+
+        public enum DataType
+        {
+            Voltages = 0,
+            Temperatures
         }
 
         public void OpenPort(object portName)
@@ -41,6 +50,15 @@ namespace SerialMonitorWPF
                 return;
             }
 
+            var config = "19200"; //BaudRate
+            config += ",";
+            config += "N";  //Parity
+            config += ",";
+            config += "8";   //DataBits
+            config += ",";
+            config += "1";  //StopBits
+
+            _axSPortAx.InitString(config);
             _axSPortAx.Open((string)portName);
             if (_axSPortAx.IsOpened)
             {
@@ -85,14 +103,23 @@ namespace SerialMonitorWPF
 
             try
             {
+                if (subStrings[0].Equals("Med1") && subStrings.Length >= VoltageCount + 1)
+                {
+                    _parsedVoltages.Clear();
+                    for (var i = 1; i <= VoltageCount; i++)
+                    {
+                        _parsedVoltages.Add(float.Parse(subStrings[i]));
+                    }
+                    UpdateData(DataType.Voltages);
+                }
                 if (subStrings[0].Equals("Med2") && subStrings.Length >= TemperatureCount + 1)
                 {
                     _parsedTemperatures.Clear();
-                    for (int i = 1; i <= TemperatureCount; i++)
+                    for (var i = 1; i <= TemperatureCount; i++)
                     {
                         _parsedTemperatures.Add((int)float.Parse(subStrings[i]));
                     }
-                    UpdateData();
+                    UpdateData(DataType.Temperatures);
                 }
             }
             catch (Exception)
@@ -125,19 +152,32 @@ namespace SerialMonitorWPF
             logFile.Close();
         }
 
-        private void UpdateData()
+        private void UpdateData(DataType dataType)
         {
-            OnDataUpdate?.Invoke(this, EventArgs.Empty);
+            OnDataUpdate?.Invoke(this, new UpdateDataEventArgs((int)dataType));
         }
 
         public BindableCollection<int?> GetTemperatures()
         {
             return _parsedTemperatures;
         }
+        public BindableCollection<float?> GetVoltages()
+        {
+            return _parsedVoltages;
+        }
 
         private void _axSPortAx_OnChangePortsList(object sender, EventArgs e)
         {
             OnPortsChange?.Invoke(_axSPortAx, EventArgs.Empty);
         }
+    }
+}
+
+public class UpdateDataEventArgs : EventArgs
+{
+    public int DataType { get; set; }
+    public UpdateDataEventArgs(int dataType)
+    {
+        DataType = dataType;
     }
 }

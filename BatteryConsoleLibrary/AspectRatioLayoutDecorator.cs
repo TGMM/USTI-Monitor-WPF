@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace TemperatureConsoleLibrary
+namespace BatteryConsoleLibrary
 {
     //Helper class to maintain the core aspect ratio on resize
     public class AspectRatioLayoutDecorator : Decorator

@@ -7,12 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="230" d:DesignWidth="310">
     <UserControl.Resources>
-        <local:TemperatureConverter x:Key="TemperatureConverter" />
+        <local:TemperatureConverter x:Key="TemperatureConverter"/>
+        <Style  x:Key="TextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#18c4c4"></Setter>
+            <Setter Property="FontSize" Value="2"></Setter>
+        </Style>
     </UserControl.Resources>
+    <!-- Aspect Ratio is 310/230 which are the image dimensions -->
     <local:AspectRatioLayoutDecorator AspectRatio="1.34782608696">
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="pack://application:,,,/TemperatureConsoleLibrary;component/Resources/TemperatureConsoleImage.png"/>
+                <ImageBrush ImageSource="pack://application:,,,/TemperatureConsoleLibrary;component/Resources/TemperatureConsoleImage.png" Stretch="Uniform"/>
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
@@ -33,30 +38,28 @@
 
             <!-- Temperature 1-->
             <Viewbox Grid.Row="1" Grid.Column="1">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[0], Converter={StaticResource TemperatureConverter}}"/>
+                <TextBlock Style="{StaticResource TextStyle}" Text="{Binding Temperatures[0], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
             <!-- Temperature 2-->
             <Viewbox Grid.Row="1" Grid.Column="3">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[1], Converter={StaticResource TemperatureConverter}}"/>
+                <TextBlock Style="{StaticResource TextStyle}" Text="{Binding Temperatures[1], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
             <!-- Temperature 3-->
             <Viewbox Grid.Row="1" Grid.Column="5">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[2], Converter={StaticResource TemperatureConverter}}"/>
+                <TextBlock Style="{StaticResource TextStyle}" Text="{Binding Temperatures[2], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
             <!-- Temperature 4-->
             <Viewbox Grid.Row="3" Grid.Column="1">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[3], Converter={StaticResource TemperatureConverter}}"/>
+                <TextBlock Style="{StaticResource TextStyle}" Text="{Binding Temperatures[3], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
             <!-- Temperature 5-->
             <Viewbox Grid.Row="3" Grid.Column="3">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[4], Converter={StaticResource TemperatureConverter}}"/>
+                <TextBlock Style="{StaticResource TextStyle}" Text="{Binding Temperatures[4], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
             <!-- Temperature 6-->
             <Viewbox Grid.Row="3" Grid.Column="5">
-                <TextBlock Foreground="#18c4c4" FontSize="2" Text="{Binding Temperatures[5], Converter={StaticResource TemperatureConverter}}"/>
+                <TextBlock Style="{StaticResource TextStyle}" Text="{Binding Temperatures[5], Converter={StaticResource TemperatureConverter}}"/>
             </Viewbox>
-
         </Grid>
     </local:AspectRatioLayoutDecorator>
-
 </UserControl>

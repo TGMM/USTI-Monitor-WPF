@@ -10,6 +10,7 @@ namespace SerialMonitorWPF.ViewModels
     {
 
         public BindableCollection<int?> Temperatures { get; set; }
+        public BindableCollection<float?> Voltages { get; set; }
         public ObservableCollection<string> AvailablePorts { get; set; }
 
         private readonly SerialPortParser _serialPortParser = new SerialPortParser();
@@ -23,9 +24,15 @@ namespace SerialMonitorWPF.ViewModels
             AvailablePorts = new ObservableCollection<string>();
             //Initialize TemperatureConsole data
             Temperatures = new BindableCollection<int?>();
-            for (int i = 0; i < _serialPortParser.TemperatureCount; i++)
+            for (var i = 0; i < SerialPortParser.TemperatureCount; i++)
             {
                 Temperatures.Add(null);
+            }
+            //Initialize BatteryConsoleData
+            Voltages = new BindableCollection<float?>();
+            for (var i = 0; i < SerialPortParser.VoltageCount; i++)
+            {
+                Voltages.Add(null);
             }
             //Functions
             UpdatePorts();
@@ -40,13 +47,22 @@ namespace SerialMonitorWPF.ViewModels
             }
         }
 
-        private void SerialPortParser_OnDataUpdate(object sender, EventArgs e)
+        private void SerialPortParser_OnDataUpdate(object sender, UpdateDataEventArgs e)
         {
             var sp = (SerialPortParser)sender;
             OnUIThread(() =>
             {
-                Temperatures = sp.GetTemperatures();
-                NotifyOfPropertyChange(nameof(Temperatures));
+                switch (e.DataType)
+                {
+                    case (int)SerialPortParser.DataType.Voltages:
+                        Voltages = sp.GetVoltages();
+                        NotifyOfPropertyChange(nameof(Voltages));
+                        break;
+                    case (int)SerialPortParser.DataType.Temperatures:
+                        Temperatures = sp.GetTemperatures();
+                        NotifyOfPropertyChange(nameof(Temperatures));
+                        break;
+                }
             });
         }
 

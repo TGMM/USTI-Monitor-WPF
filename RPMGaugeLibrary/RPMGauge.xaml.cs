@@ -1,39 +1,33 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace TemperatureConsoleLibrary
+namespace RPMGaugeLibrary
 {
     /// <summary>
-    /// Interaction logic for TemperatureConsole.xaml
+    /// Interaction logic for RpmGauge.xaml
     /// </summary>
-    public partial class TemperatureConsole
+    public partial class RpmGauge
     {
-        public TemperatureConsole()
+        public RpmGauge()
         {
             InitializeComponent();
         }
     }
 
-    public class TemperatureConverter : IValueConverter
+    public class AirSpeedConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var numValue = (int?)value;
-            if (value == null) return "--";
-            return numValue >= 0 ? numValue + "°" : "--";
-
+            var numValue = (double?)value;
+            return numValue == null ? "0 km/h" : numValue + " km/h";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var stringValue = (string)value;
 
-            return string.IsNullOrEmpty(stringValue) ? 0 
+            return string.IsNullOrEmpty(stringValue) ? 0
                 : int.Parse(new string(stringValue.Where(char.IsDigit).ToArray()));
         }
     }

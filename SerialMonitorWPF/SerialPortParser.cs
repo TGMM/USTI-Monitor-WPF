@@ -17,6 +17,8 @@ namespace SerialMonitorWPF
 
         private BindableCollection<int?> _parsedTemperatures;
         private BindableCollection<float?> _parsedVoltages;
+        private double ParsedRpm { get; set; }
+        public double ParsedAirSpeed { get; set; }
 
         private byte[] _inputBuffer;
         private int _bufferCounter;
@@ -34,12 +36,14 @@ namespace SerialMonitorWPF
             
             _parsedTemperatures = new BindableCollection<int?>();
             _parsedVoltages = new BindableCollection<float?>();
+            ParsedRpm = 0;
         }
 
         public enum DataType
         {
-            Voltages = 0,
-            Temperatures
+            Voltages,
+            Temperatures,
+            EngineRpmFuel
         }
 
         public void OpenPort(object portName)
@@ -112,7 +116,7 @@ namespace SerialMonitorWPF
                     }
                     UpdateData(DataType.Voltages);
                 }
-                if (subStrings[0].Equals("Med2") && subStrings.Length >= TemperatureCount + 1)
+                else if (subStrings[0].Equals("Med2") && subStrings.Length >= TemperatureCount + 1)
                 {
                     _parsedTemperatures.Clear();
                     for (var i = 1; i <= TemperatureCount; i++)
@@ -120,6 +124,28 @@ namespace SerialMonitorWPF
                         _parsedTemperatures.Add((int)float.Parse(subStrings[i]));
                     }
                     UpdateData(DataType.Temperatures);
+                }
+                else if (subStrings[0].Equals("Med3") && subStrings.Length >= 7)
+                {
+                    //float temperature1, temperature2, temperature3;
+
+                    //temperature1 = float.Parse(subStrings[1]);  //3
+                    //temperature2 = float.Parse(subStrings[2]);  //1
+                    //temperature3 = float.Parse(subStrings[3]);  //2
+
+                    //motorDiagram1.setTemperatures(temperature1, temperature3, temperature2);
+
+                    ParsedRpm = float.Parse(subStrings[4]);
+
+                    ParsedAirSpeed = float.Parse(subStrings[5]);
+
+                    //float mainGasVoltage, reserveGasVoltage;
+
+                    //mainGasVoltage = float.Parse(subStrings[6]);
+                    //reserveGasVoltage = float.Parse(subStrings[7]);
+
+                    //fuelBar1.setLevelVoltages(mainGasVoltage, reserveGasVoltage);
+                    UpdateData(DataType.EngineRpmFuel);
                 }
             }
             catch (Exception)
@@ -164,6 +190,16 @@ namespace SerialMonitorWPF
         public BindableCollection<float?> GetVoltages()
         {
             return _parsedVoltages;
+        }
+
+        public double? GetRpm()
+        {
+            return ParsedRpm;
+        }
+
+        public double? GetAirSpeed()
+        {
+            return ParsedAirSpeed;
         }
 
         private void _axSPortAx_OnChangePortsList(object sender, EventArgs e)

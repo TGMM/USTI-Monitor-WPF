@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F14824E7-68E8-4C4A-8B51-FC4942E9C396}</ProjectGuid>
+    <ProjectGuid>{98E3DEC2-EBE5-4522-ACD9-55924082FEFB}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>BatteryConsoleLibrary</RootNamespace>
-    <AssemblyName>BatteryConsoleLibrary</AssemblyName>
+    <RootNamespace>RPMGaugeLibrary</RootNamespace>
+    <AssemblyName>RPMGaugeLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="QuickConverter, Version=1.2.5.0, Culture=neutral, PublicKeyToken=9c892aa7bc2af2cf, processorArchitecture=MSIL">
-      <HintPath>..\packages\QuickConverter.1.2.5\lib\net40\QuickConverter.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -51,30 +48,23 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="BatteryBar.xaml">
+    <Page Include="Gauge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BatteryConsole.xaml">
+    <Page Include="RpmGauge.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="BatteryBar.xaml.cs">
-      <DependentUpon>BatteryBar.xaml</DependentUpon>
+    <Compile Include="Gauge.xaml.cs">
+      <DependentUpon>Gauge.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BatteryConsole.xaml.cs">
-      <DependentUpon>BatteryConsole.xaml</DependentUpon>
+    <Compile Include="RpmGauge.xaml.cs">
+      <DependentUpon>RpmGauge.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="BatteryIndicator.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BatteryIndicator.xaml.cs">
-      <DependentUpon>BatteryIndicator.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,20 +82,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Resources\Fonts\SimpleBold.ttf" />
     <Resource Include="Resources\Fonts\SimpleRegular.ttf" />
+    <Resource Include="Resources\Fonts\SimpleBold.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\batteriesConsole.png" />
-    <Resource Include="Resources\emptyContainerB.png" />
-    <Resource Include="Resources\emptyContainerS.png" />
-    <Resource Include="Resources\fullContainerB.png" />
-    <Resource Include="Resources\fullContainerS.png" />
+    <Resource Include="Resources\gaugeRPM.png" />
+    <Resource Include="Resources\needleRPM.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AspectRatioHelper\AspectRatioHelper.csproj">

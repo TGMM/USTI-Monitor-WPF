@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BatteryConsoleLibrary"
+             xmlns:helper="clr-namespace:AspectRatioHelper;assembly=AspectRatioHelper"
              mc:Ignorable="d" 
              d:DesignHeight="520" d:DesignWidth="650">
 
@@ -18,7 +19,7 @@
         <local:VoltageConverter x:Key="VoltageConverter"/>
     </UserControl.Resources>
 
-    <local:AspectRatioLayoutDecorator AspectRatio="1.25">
+    <helper:AspectRatioLayoutDecorator AspectRatio="1.25">
         <Grid>
             <Grid.Background>
                 <ImageBrush ImageSource="Resources/batteriesConsole.png" Stretch="Uniform"/>
@@ -84,6 +85,6 @@
             </Viewbox>
 
         </Grid>
-    </local:AspectRatioLayoutDecorator>
+    </helper:AspectRatioLayoutDecorator>
 
 </UserControl>

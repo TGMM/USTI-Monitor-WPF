@@ -145,9 +145,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AspectRatioHelper\AspectRatioHelper.csproj">
+      <Project>{e4a8ec2f-a02c-4da2-ad85-e77a8a27b304}</Project>
+      <Name>AspectRatioHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BatteryConsoleLibrary\BatteryConsoleLibrary.csproj">
       <Project>{f14824e7-68e8-4c4a-8b51-fc4942e9c396}</Project>
       <Name>BatteryConsoleLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RPMGaugeLibrary\RPMGaugeLibrary.csproj">
+      <Project>{98e3dec2-ebe5-4522-acd9-55924082fefb}</Project>
+      <Name>RPMGaugeLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\TemperatureConsoleLibrary\TemperatureConsoleLibrary.csproj">
       <Project>{da1eaa6a-3943-4d5c-baec-3119c88e89a7}</Project>

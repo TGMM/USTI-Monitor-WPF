@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO.Ports;
 using System.Windows.Input;
 using Caliburn.Micro;
@@ -12,6 +13,8 @@ namespace SerialMonitorWPF.ViewModels
         public BindableCollection<int?> Temperatures { get; set; }
         public BindableCollection<float?> Voltages { get; set; }
         public ObservableCollection<string> AvailablePorts { get; set; }
+        public double? Rpm { get; set; }
+        public double? AirSpeed { get; set; }
 
         private readonly SerialPortParser _serialPortParser = new SerialPortParser();
 
@@ -34,6 +37,10 @@ namespace SerialMonitorWPF.ViewModels
             {
                 Voltages.Add(null);
             }
+            //Initialize Rpm
+            Rpm = 0;
+            //Initialize AirSpeed
+            AirSpeed = 0;
             //Functions
             UpdatePorts();
         }
@@ -61,6 +68,12 @@ namespace SerialMonitorWPF.ViewModels
                     case (int)SerialPortParser.DataType.Temperatures:
                         Temperatures = sp.GetTemperatures();
                         NotifyOfPropertyChange(nameof(Temperatures));
+                        break;
+                    case (int)SerialPortParser.DataType.EngineRpmFuel:
+                        Rpm = sp.GetRpm();
+                        NotifyOfPropertyChange(nameof(Rpm));
+                        AirSpeed = sp.GetAirSpeed();
+                        NotifyOfPropertyChange(nameof(AirSpeed));
                         break;
                 }
             });

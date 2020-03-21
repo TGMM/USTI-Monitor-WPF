@@ -2,9 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace TemperatureConsoleLibrary
+namespace AspectRatioHelper
 {
-    //Helper class to maintain the core aspect ratio on resize
+    // Helper class to maintain the core aspect ratio on resize
     public class AspectRatioLayoutDecorator : Decorator
     {
         public static readonly DependencyProperty AspectRatioProperty =
@@ -26,7 +26,7 @@ namespace TemperatureConsoleLibrary
                 return false;
             }
 
-            var aspectRatio = (double) value;
+            var aspectRatio = (double)value;
             return aspectRatio > 0
                    && !double.IsInfinity(aspectRatio)
                    && !double.IsNaN(aspectRatio);
@@ -34,7 +34,7 @@ namespace TemperatureConsoleLibrary
 
         public double AspectRatio
         {
-            get => (double) GetValue(AspectRatioProperty);
+            get => (double)GetValue(AspectRatioProperty);
             set => SetValue(AspectRatioProperty, value);
         }
 

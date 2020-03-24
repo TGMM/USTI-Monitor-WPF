@@ -7,6 +7,7 @@
                       xmlns:tcLib="clr-namespace:TemperatureConsoleLibrary;assembly=TemperatureConsoleLibrary"
                       xmlns:bcLib="clr-namespace:BatteryConsoleLibrary;assembly=BatteryConsoleLibrary"
                       xmlns:rgLib="clr-namespace:RPMGaugeLibrary;assembly=RPMGaugeLibrary"
+                      xmlns:cpLib="clr-namespace:CompassLibrary;assembly=CompassLibrary"
                       mc:Ignorable="d"
                       Title="ShellView" Height="450" Width="800"
                       xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
@@ -32,6 +33,7 @@
 
         <tcLib:TemperatureConsole Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"/>
         <bcLib:BatteryConsole Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"/>
-        <rgLib:RpmGauge Grid.Row="1" Grid.Column="1"></rgLib:RpmGauge>
+        <rgLib:RpmGauge Grid.Row="1" Grid.Column="1"/>
+        <cpLib:Compass Grid.Row="1" Grid.Column="3"/>
     </Grid>
 </controls:MetroWindow>

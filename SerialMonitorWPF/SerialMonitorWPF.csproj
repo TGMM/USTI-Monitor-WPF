@@ -91,6 +91,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DelegateCommand.cs" />
+    <Compile Include="LogWriter.cs" />
     <Compile Include="MetroMessageBox.cs" />
     <Compile Include="Resources\UIStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -152,6 +153,10 @@
     <ProjectReference Include="..\BatteryConsoleLibrary\BatteryConsoleLibrary.csproj">
       <Project>{f14824e7-68e8-4c4a-8b51-fc4942e9c396}</Project>
       <Name>BatteryConsoleLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CompassLibrary\CompassLibrary.csproj">
+      <Project>{c8f4808e-6b88-42f5-97bb-c82a0410b4ed}</Project>
+      <Name>CompassLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\RPMGaugeLibrary\RPMGaugeLibrary.csproj">
       <Project>{98e3dec2-ebe5-4522-acd9-55924082fefb}</Project>

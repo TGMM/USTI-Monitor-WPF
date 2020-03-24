@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO.Ports;
 using System.Windows.Input;
 using Caliburn.Micro;
@@ -15,7 +14,7 @@ namespace SerialMonitorWPF.ViewModels
         public ObservableCollection<string> AvailablePorts { get; set; }
         public double? Rpm { get; set; }
         public double? AirSpeed { get; set; }
-
+        public SerialPortParser.CompassValues CompassValues { get; set; }
         private readonly SerialPortParser _serialPortParser = new SerialPortParser();
 
         public ShellViewModel()
@@ -74,6 +73,10 @@ namespace SerialMonitorWPF.ViewModels
                         NotifyOfPropertyChange(nameof(Rpm));
                         AirSpeed = sp.GetAirSpeed();
                         NotifyOfPropertyChange(nameof(AirSpeed));
+                        break;
+                    case (int)SerialPortParser.DataType.Compass:
+                        CompassValues = sp.GetCompassValues();
+                        NotifyOfPropertyChange(nameof(CompassValues));
                         break;
                 }
             });
